@@ -109,7 +109,6 @@ public class Proposals {
     @PreUpdate
     public void preUpdate() { this.updatedAt = LocalDateTime.now(); }
 
-    // getters and setters omitted for brevity; they can be generated if needed
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
     public String getName() { return name; }

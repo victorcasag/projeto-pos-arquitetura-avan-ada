@@ -16,13 +16,15 @@ public class APyHubService {
         this.apiKey = apiKey;
     }
 
-    public BigDecimal convert(String sourceCurrency, String targetCurrency) {
+    public BigDecimal convert(String sourceCurrency, String targetCurrency, String date) {
         APyHubRequest req = new APyHubRequest();
         req.setSource(sourceCurrency);
         req.setTarget(targetCurrency);
+        APyHubRequestWithDate reqd = new APyHubRequestWithDate(sourceCurrency, targetCurrency, date);
 
-        APyHubResponse resp = client.convert(apiKey, req);
+        APyHubResponse resp = client.convert(apiKey, reqd);
         if (resp == null || resp.getData() == null) return null;
         return BigDecimal.valueOf(resp.getData());
     }
 }
+

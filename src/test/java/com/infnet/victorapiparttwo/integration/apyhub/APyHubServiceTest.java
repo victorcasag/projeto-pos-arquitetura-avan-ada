@@ -14,10 +14,10 @@ class APyHubServiceTest {
         APyHubClient mockClient = Mockito.mock(APyHubClient.class);
         APyHubResponse resp = new APyHubResponse();
         resp.setData(0.43);
-        Mockito.when(mockClient.convert(Mockito.anyString(), Mockito.any(APyHubRequest.class))).thenReturn(resp);
+    Mockito.when(mockClient.convert(Mockito.anyString(), Mockito.any(APyHubRequestWithDate.class))).thenReturn(resp);
 
-        APyHubService svc = new APyHubService(mockClient, "dummy-key");
-        BigDecimal result = svc.convert("usd", "brl");
+    APyHubService svc = new APyHubService(mockClient, "dummy-key");
+    BigDecimal result = svc.convert("usd", "brl", "2025-09-26");
 
         assertNotNull(result);
         assertEquals(0, result.compareTo(new BigDecimal("0.43")));

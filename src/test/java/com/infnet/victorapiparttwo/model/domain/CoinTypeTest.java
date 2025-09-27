@@ -11,11 +11,18 @@ class CoinTypeTest {
     @DisplayName("CoinType: fields and lifecycle")
     void coinTypeFields() {
         CoinType t = new CoinType();
+        t.setId(1);
         t.setCode("USD");
         t.setName("Dollar");
+    t.setIsActive(null);
+    t.setCreatedAt(null);
+        t.setUpdatedAt(null);
         t.prePersist();
-        assertNotNull(t.getCreatedAt());
+        assertEquals(1, t.getId());
         assertEquals("USD", t.getCode());
         assertEquals("Dollar", t.getName());
+        assertTrue(t.getIsActive());
+        assertNotNull(t.getCreatedAt());
+        assertNotNull(t.getUpdatedAt());
     }
 }

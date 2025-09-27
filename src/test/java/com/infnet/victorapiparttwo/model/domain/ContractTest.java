@@ -24,11 +24,31 @@ class ContractTest {
     @DisplayName("Contract: basic fields and prePersist")
     void contractBasics() {
         Contract c = new Contract();
+        c.setId(10);
         c.setName("Test Contract");
-        c.setValue(BigDecimal.valueOf(1000));
-        assertNull(c.getCreatedAt());
-        c.prePersist();
+        c.setDescription("Desc");
+        c.setContractNumber("CN-001");
+        c.setStartDate(java.time.LocalDate.of(2025,1,1));
+        c.setEndDate(java.time.LocalDate.of(2025,12,31));
+        c.setValue(new BigDecimal("1500.00"));
+        c.setCoinTypeId(2);
+        c.setClientSupplierId(3);
+    c.setIsActive(null);
+    c.setCreatedAt(null);
+    c.setUpdatedAt(null);
+    c.prePersist();
+        assertEquals(10, c.getId());
+        assertEquals("Test Contract", c.getName());
+        assertEquals("Desc", c.getDescription());
+        assertEquals("CN-001", c.getContractNumber());
+        assertEquals(java.time.LocalDate.of(2025,1,1), c.getStartDate());
+        assertEquals(java.time.LocalDate.of(2025,12,31), c.getEndDate());
+        assertEquals(new BigDecimal("1500.00"), c.getValue());
+        assertTrue(c.getIsActive());
         assertNotNull(c.getCreatedAt());
-        assertEquals(BigDecimal.valueOf(1000), c.getValue());
+        assertNotNull(c.getUpdatedAt());
+        c.setUpdatedAt(null);
+        c.preUpdate();
+        assertNotNull(c.getUpdatedAt());
     }
 }

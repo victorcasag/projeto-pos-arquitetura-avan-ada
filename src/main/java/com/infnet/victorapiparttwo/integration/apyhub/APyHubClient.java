@@ -11,6 +11,6 @@ public interface APyHubClient {
     @PostMapping(consumes = "application/json", produces = "application/json")
     APyHubResponse convert(
         @RequestHeader("apy-token") String apiKey,
-        @RequestBody APyHubRequest request
+        @RequestBody APyHubRequestWithDate request
     );
 }

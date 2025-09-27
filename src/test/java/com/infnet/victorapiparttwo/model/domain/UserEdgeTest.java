@@ -15,8 +15,7 @@ class UserEdgeTest {
         u.setEmail("a@b.com");
         u.setPasswordHash("p");
         u.setIsActive(null);
-        // prior to persist behavior
-        assertTrue(u.isEnabled());
+    assertTrue(u.isEnabled());
         assertTrue(u.isAccountNonLocked());
     }
 }

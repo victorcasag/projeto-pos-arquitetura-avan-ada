@@ -11,11 +11,22 @@ class CountryTest {
     @DisplayName("Country: prePersist sets timestamps and defaults")
     void prePersistSetsTimestamps() {
         Country c = new Country();
+        c.setId(5);
         c.setName("Brazil");
-        assertNull(c.getCreatedAt());
-        c.prePersist();
+        c.setCode2("BR");
+        c.setCode3("BRA");
+        c.setCurrencyCode("BRL");
+    c.setIsActive(null);
+    c.setCreatedAt(null);
+    c.setUpdatedAt(null);
+    c.prePersist();
+        assertEquals(5, c.getId());
+        assertEquals("Brazil", c.getName());
+        assertEquals("BR", c.getCode2());
+        assertEquals("BRA", c.getCode3());
+        assertEquals("BRL", c.getCurrencyCode());
+        assertTrue(c.getIsActive());
         assertNotNull(c.getCreatedAt());
         assertNotNull(c.getUpdatedAt());
-        assertTrue(c.getIsActive());
     }
 }
